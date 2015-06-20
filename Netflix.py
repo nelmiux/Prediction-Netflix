@@ -32,7 +32,7 @@ def netflix_print () :
     
     """
 
-    return 1
+    return ""
 
 # -------------
 # netflix_solve

@@ -22,10 +22,10 @@ class TestNetflix (TestCase) :
     # ----
 
     def test_read_1 (self) :
-        s    = ""
-        netflix_read()
-        self.assertEqual()
-        self.assertEqual()
+        # s    = "1"
+        t = netflix_read()
+        self.assertEqual(t, 1)
+        # self.assertEqual()
 
 
     # ----
@@ -34,7 +34,7 @@ class TestNetflix (TestCase) :
 
     def test_eval_1 (self) :
         v = netflix_eval()
-        self.assertEqual()
+        self.assertEqual(v, 1)
   
     # -----
     # print
@@ -42,8 +42,8 @@ class TestNetflix (TestCase) :
 
     def test_print_1 (self) :
         w = StringIO()
-        netflix_print()
-        self.assertEqual(w.getvalue(), "")
+        t = netflix_print()
+        self.assertEqual(w.getvalue(), t)
 
     # -----
     # solve
