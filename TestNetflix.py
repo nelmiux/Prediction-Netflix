@@ -7,7 +7,7 @@
 # imports
 # -------
 
-from io       import StringIO
+import io
 from unittest import main, TestCase
 
 from Netflix import netflix_read, netflix_eval, netflix_print, netflix_solve
@@ -22,11 +22,9 @@ class TestNetflix (TestCase) :
     # ----
 
     def test_read_1 (self) :
-        # s    = "1"
-        t = netflix_read()
-        self.assertEqual(t, 1)
-        # self.assertEqual()
-
+        r = io.StringIO("1:\n1\n2\n3\n4:\n9\n12\n15\n32\n")
+        l = netflix_read (r)
+        self.assertEqual(l, {'1': [1, 2, 3], '4': [9, 12, 15, 32]})
 
     # ----
     # eval
