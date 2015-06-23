@@ -27,8 +27,8 @@ def read_write (d) :
                 user_id = s[:-14]
                 rating = s[-13:-12]
                 if ((len(d) == 0) or (user_id not in d)) :
-                     d[user_id] = [rating, 1, 0.0]
-                     d1[user_id] = 0
+                     d[user_id] = [rating, 1, rating]
+                     d1[user_id] = rating
                 else :
                     t0 = d[user_id][0]
                     sum_user = int(t0) + int(rating)
@@ -47,7 +47,7 @@ def read_write (d) :
             keys = d1.keys()
 
             for each in keys:
-                f.write (str(each) + ',' + str(d1.get(each)))
+                f.write (str(each) + ',' + str(d1.get(each))+ '\n')
                 
 if __name__ == "__main__" :
     d = dict()

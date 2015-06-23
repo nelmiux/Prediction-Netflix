@@ -1,6 +1,77 @@
+EEEEEF.F
+======================================================================
+ERROR: test_movie_avg_1 (__main__.TestNetflix)
+----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "TestNetflix.py", line 13, in <module>
-    from Netflix import netflix_read, netflix_eval, netflix_print, netflix_solve
-  File "/v/filer4b/v38q001/npererar/Desktop/cs373-netflix/Netflix.py", line 10, in <module>
-    from numpy import mean, sqrt, square, subtract
-ImportError: No module named 'numpy'
+  File "TestNetflix.py", line 27, in test_movie_avg_1
+    avg = netflix_avg_movie(s)
+  File "/v/filer4b/v38q001/daniela7/Desktop/swe/Assignments/cs373-netflix/Netflix.py", line 15, in netflix_avg_movie
+    movie_file = netflix_read_movie_files (movie_id)
+  File "/v/filer4b/v38q001/daniela7/Desktop/swe/Assignments/cs373-netflix/Netflix.py", line 57, in netflix_read_movie_files
+    movie_file = open("/u/downing/cs/netflix/training_set/" + file_name)
+FileNotFoundError: [Errno 2] No such file or directory: '/u/downing/cs/netflix/training_set/mv_1454193,5,1997-02-07\n.txt'
+
+======================================================================
+ERROR: test_movie_avg_2 (__main__.TestNetflix)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestNetflix.py", line 32, in test_movie_avg_2
+    avg = netflix_avg_movie(s)
+  File "/v/filer4b/v38q001/daniela7/Desktop/swe/Assignments/cs373-netflix/Netflix.py", line 15, in netflix_avg_movie
+    movie_file = netflix_read_movie_files (movie_id)
+  File "/v/filer4b/v38q001/daniela7/Desktop/swe/Assignments/cs373-netflix/Netflix.py", line 57, in netflix_read_movie_files
+    movie_file = open("/u/downing/cs/netflix/training_set/" + file_name)
+FileNotFoundError: [Errno 2] No such file or directory: '/u/downing/cs/netflix/training_set/mv_1488844,3,2005-09-06\n822109,5,2005-05-13\n885013,4,2005-10-19\n30878,4,2005-12-26\n.txt'
+
+======================================================================
+ERROR: test_movie_avg_3 (__main__.TestNetflix)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestNetflix.py", line 37, in test_movie_avg_3
+    avg = netflix_avg_movie(s)
+  File "/v/filer4b/v38q001/daniela7/Desktop/swe/Assignments/cs373-netflix/Netflix.py", line 15, in netflix_avg_movie
+    movie_file = netflix_read_movie_files (movie_id)
+  File "/v/filer4b/v38q001/daniela7/Desktop/swe/Assignments/cs373-netflix/Netflix.py", line 57, in netflix_read_movie_files
+    movie_file = open("/u/downing/cs/netflix/training_set/" + file_name)
+FileNotFoundError: [Errno 2] No such file or directory: '/u/downing/cs/netflix/training_set/mv_1116080,5,2005-08-08\n255443,2,2005-05-23\n2460625,3,2005-03-21\n1621184,5,2005-06-26\n2404795,4,2005-09-21\n.txt'
+
+======================================================================
+ERROR: test_movie_avg_4 (__main__.TestNetflix)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestNetflix.py", line 42, in test_movie_avg_4
+    avg = netflix_avg_movie(s)
+  File "/v/filer4b/v38q001/daniela7/Desktop/swe/Assignments/cs373-netflix/Netflix.py", line 15, in netflix_avg_movie
+    movie_file = netflix_read_movie_files (movie_id)
+  File "/v/filer4b/v38q001/daniela7/Desktop/swe/Assignments/cs373-netflix/Netflix.py", line 57, in netflix_read_movie_files
+    movie_file = open("/u/downing/cs/netflix/training_set/" + file_name)
+FileNotFoundError: [Errno 2] No such file or directory: '/u/downing/cs/netflix/training_set/mv_1361273,5,2006-06-06\n2917453,5,2003-04-10\n1826419,5,2000-12-09\n.txt'
+
+======================================================================
+ERROR: test_movie_avg_5 (__main__.TestNetflix)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestNetflix.py", line 47, in test_movie_avg_5
+    self.expectedFailure(netflix_avg_movie(s))
+AttributeError: 'TestNetflix' object has no attribute 'expectedFailure'
+
+======================================================================
+FAIL: test_user_avg_1 (__main__.TestNetflix)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestNetflix.py", line 62, in test_user_avg_1
+    self.assertEqual(user_avg, 2)
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_user_avg_3 (__main__.TestNetflix)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestNetflix.py", line 86, in test_user_avg_3
+    self.assertEqual(dic[user_id][2], 3.45454545)
+AssertionError: 3.4545454545454546 != 3.45454545
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.004s
+
+FAILED (failures=2, errors=5)

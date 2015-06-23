@@ -7,17 +7,14 @@ from collections import defaultdict
 import io
 import ctypes
 import math
-from numpy import mean, sqrt, square, subtract
-
 # ------------
 # netflix_rating_list
 # ------------
 
-def netflix_avg_movie (movie_file) :
+def netflix_avg_movie (movie_id) :
+    movie_file = netflix_read_movie_files (movie_id)
     sum_movie = 0
     count_users = 0
-    # path = "/u/downing/cs/netflix/training_set/"
-    # movie_file = urllib.request.urlopen('http://www.cs.utexas.edu/users/downing/netflix/training_set/' + file_name)
     t2 = movie_file.readline()
     t2 = movie_file.readline()
     while t2 != '\n' and t2 != '' : 
@@ -26,13 +23,14 @@ def netflix_avg_movie (movie_file) :
         t2 = movie_file.readline() 
     assert (count_users != 0)
     avg =  sum_movie / float(count_users)
+    movie_file.close()
     return avg
     
 def netflix_avg_user (user_id, rating, d, d1) :
     uavg = 0
     if ((len(d) == 0) or (user_id not in d)) :
-        d[user_id] = [rating, 1, 0.0]
-        d1[user_id] = 0
+        d[user_id] = [rating, 1, rating]
+        d1[user_id] = rating
     else :
         t0 = d[user_id][0]
         sum_user = int(t0) + int(rating)
@@ -121,10 +119,8 @@ def netflix_solve (r, w) :
     for s in r :
         if (s[len(s)-2] == ':') :
             movie_id = netflix_read_movie_id(s)
-            movie_file = netflix_read_movie_files (movie_id)
-            t = netflix_avg_movie (movie_file)
+            t = netflix_avg_movie (movie_id)
             netflix_write_data_file (s)
-            movie_file.close()
         else :
             user_id = netflix_read_user_id(s)
             movie_file = netflix_read_movie_files (movie_id)
@@ -150,6 +146,6 @@ def netflix_solve (r, w) :
     t1 = r.readline()
     t7 = tsum / (float(tcount))
     rmse = 1 / float(1.0)
-    rmse = sqrt(t7)
+    rmse = math.sqrt(t7)
     f1.write('         ' + str(rmse))
     print(str(rmse))
