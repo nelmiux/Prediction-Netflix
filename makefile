@@ -29,6 +29,8 @@ clean:
 	rm -f  RunNetflix.out
 	rm -f  TestNetflix.out
 	rm -rf __pycache__
+	rm -rf result.txt
+	rm -rf data.txt
 
 config:
 	git config -l

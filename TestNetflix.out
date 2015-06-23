@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "TestNetflix.py", line 13, in <module>
+    from Netflix import netflix_read, netflix_eval, netflix_print, netflix_solve
+  File "/v/filer4b/v38q001/npererar/Desktop/cs373-netflix/Netflix.py", line 10, in <module>
+    from numpy import mean, sqrt, square, subtract
+ImportError: No module named 'numpy'

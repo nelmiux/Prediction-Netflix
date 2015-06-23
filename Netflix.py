@@ -6,6 +6,8 @@ import re
 from collections import defaultdict
 import io
 import ctypes
+import math
+from numpy import mean, sqrt, square, subtract
 
 # ------------
 # netflix_rating_list
@@ -25,25 +27,24 @@ def netflix_avg_movie (movie_file) :
     assert (count_users != 0)
     avg =  sum_movie / float(count_users)
     return avg
-
-def netflix_user_data (d, user_id, rating) :
-    """
-    This make a dictionary to be used after to compute the users per movie avg
-    it will return the dictionary of the relation sum of all user's rating per 
-    movie and number of movies
-    """
-    if (user_id) in d :
-        # index = d.keys().index(user_id)
-        sum_user = 0
-        count_movies = int(d[user_id][1]) + 1
-        sum_user = int(d[user_id][0]) + int(rating)
-        avg = sum_user / float(count_movies)
+    
+def netflix_avg_user (user_id, rating, d, d1) :
+    uavg = 0
+    if ((len(d) == 0) or (user_id not in d)) :
+        d[user_id] = [rating, 1, 0.0]
+        d1[user_id] = 0
+    else :
+        t0 = d[user_id][0]
+        sum_user = int(t0) + int(rating)
+        t1 = d[user_id][1]
+        count_movies = int(t1) + 1
+        uavg = sum_user / float(count_movies)
         d[user_id][0] = sum_user
         d[user_id][1] = count_movies
-        d[user_id][2] = avg
-    else :
-        d.update({user_id: [int(rating), 1, 0]})
-    return d
+        d[user_id][2] = uavg
+        d1[user_id] = uavg
+    return uavg
+
 
 # ------------
 # netflix_read
@@ -55,13 +56,10 @@ def netflix_read_movie_files (movie_id) :
     """
     file_name = 'mv_' + (('0' * (7 - len(str(movie_id)))) + str(movie_id)) + '.txt'
     # movie_file = open("/media/sf_Work/GitHub/private/cs373-netflix/" + file_name)
-    # movie_file = open("/u/downing/cs/netflix/training_set/" + file_name)
-    libc = ctypes.cdll.LoadLibrary('libc.so.6')
-    res_init = libc.__res_init
-    res_init()
-    movie_file = urllib.request.urlopen('http://www.cs.utexas.edu/users/downing/netflix/training_set/' + file_name)
+    movie_file = open("/u/downing/cs/netflix/training_set/" + file_name)
+    # movie_file = urllib.request.urlopen('http://www.cs.utexas.edu/users/downing/netflix/training_set/' + file_name)
 
-    return movie_file.read().decode('utf-8')
+    return movie_file
 
 # ------------
 # netflix_read
@@ -80,49 +78,9 @@ def netflix_read_rating(line) :
     return line[-13:-12]
 
 def netflix_write_data_file (line) :
-    with open("data.txt","a+") as f: 
+    with open("data.txt",'a+') as f: 
         f.write(line)
     return f
-
-    """
-    t1 = r.readline()
-    sum_movie = 0
-    movie_id = -1
-    count_movie = 0
-    l1 = []
-    while t1 != '\n' and t1 != '' : 
-        if (t1[len(t1) - 2] == ':') :               
-            movie_id = t1[:-2]
-            file_name = 'mv_' + (('0' * (7 - len(str(movie_id)))) + str(movie_id)) + '.txt'
-            movie_file = open("/media/sf_Work/GitHub/private/cs373-netflix/" + file_name)
-            t4 = netflix_avg_movie (movie_file)
-            avg_movies = []
-            avg_movies = [movie_id, t4]
-            with open("data.txt","a+") as f:
-                f.write(movie_id + ':\n')
-            movie_file.close()
-            l1 = []
-        else :
-            user_id = t1[:-1]
-            movie_file = open("/media/sf_Work/GitHub/private/cs373-netflix/" + file_name)
-            t2 = movie_file.readline()
-            t2 = movie_file.readline()
-            while t2 != '\n' and t2 != '' : 
-                if (user_id) in t2 :
-                    rating = t2[-13:-12]
-                    with open("data.txt","a+") as f:
-                        f.write(t2)
-                t2 = movie_file.readline()
-            movie_file.close()
-            l1.append(int(t1[:-1]))
-            d1[movie_id] = l1
-        t1 = r.readline()
-    movie_file.close()
-    print(avg_movies)
-
-    return d1
-    """
-    
 
 # ------------
 # netflix_eval
@@ -138,17 +96,12 @@ def netflix_eval (l) :
 # netflix_print
 # -------------
 
-def netflix_print (w, l, k) :
+def netflix_print (user_id, predicted) :
     """
     
     """
-    try :
-        assert ((type(l) is dict) and (type(k) is int))
-        assert (k > 0)
-        assert (w is not None)
-        w.write(str(i) + " " + str(l) + " " + str(k) + "\n")
-    except (AssertionError, OverflowError, MemoryError) :
-        w.write("")
+    f = open("result.txt",'a+')
+    return f
 
 # -------------
 # netflix_solve
@@ -159,35 +112,44 @@ def netflix_solve (r, w) :
     r a reader
     w a writer
     """
+    d = dict()
+    d1 = dict()
     movie_id = -1
-    d = defaultdict(list)
-    t1 = r.readline()
-    while t1 != '\n' and t1 != '' :
-        if (t1[len(t1) - 2] == ':') :               
-            movie_id = netflix_read_movie_id(t1)
+    tsum = 0
+    tcount = 0
+    tsum2 = 0
+    for s in r :
+        if (s[len(s)-2] == ':') :
+            movie_id = netflix_read_movie_id(s)
             movie_file = netflix_read_movie_files (movie_id)
-            t4 = netflix_avg_movie (movie_file)
-            netflix_write_data_file (t1)
+            t = netflix_avg_movie (movie_file)
+            netflix_write_data_file (s)
             movie_file.close()
         else :
-            user_id = netflix_read_user_id(t1)
+            user_id = netflix_read_user_id(s)
             movie_file = netflix_read_movie_files (movie_id)
             t2 = movie_file.readline()
             t2 = movie_file.readline()
             while t2 != '\n' and t2 != '' : 
                 if (user_id) in t2 :
+                    rating = int(netflix_read_rating(t2))
+                    uavg = netflix_avg_user (user_id, rating, d, d1)
+                    predicted = (t + uavg / float(2))
+                    tcount = tcount + 1
+                    print(tcount)
+                    f1 = netflix_print(user_id, predicted)
+                    t5 = float(rating - predicted)
+                    t6 = abs(t5)
+                    f1.write(str(user_id) + ',' + str(predicted) + '\n')
+                    math.pow(t6, 2)
+                    tsum += t6
+                    tsum2 += predicted
                     netflix_write_data_file (t2)
                 t2 = movie_file.readline()
             movie_file.close()
-        t1 = r.readline()
-    f = io.StringIO(open('data.txt').read())
-    for s in f :
-        if (s[len(s) - 2] == ':') :
-            movie_id = netflix_read_movie_id(t1)
-        else :
-            user_id = s[:-14]
-            rating = netflix_read_rating(s)
-            print(netflix_user_data (d, user_id, rating).items())
-
-    os.remove('data.txt')
-    
+    t1 = r.readline()
+    t7 = tsum / (float(tcount))
+    rmse = 1 / float(1.0)
+    rmse = sqrt(t7)
+    f1.write('         ' + str(rmse))
+    print(str(rmse))
