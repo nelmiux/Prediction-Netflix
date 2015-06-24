@@ -3,12 +3,12 @@
 import os
 import urllib.request
 import re
-from collections import defaultdict
 import io
 import ctypes
 import math
+
 # ------------
-# netflix_rating_list
+# netflix_avg_movie
 # ------------
 
 def netflix_avg_movie (movie_id) :
@@ -25,12 +25,17 @@ def netflix_avg_movie (movie_id) :
     avg =  sum_movie / float(count_users)
     movie_file.close()
     return avg
+
+# ------------
+# netflix_avg_user
+# ------------
     
 def netflix_avg_user (user_id, rating, d, d1) :
     uavg = 0
     if ((len(d) == 0) or (user_id not in d)) :
         d[user_id] = [rating, 1, rating]
         d1[user_id] = rating
+        uavg = rating
     else :
         t0 = d[user_id][0]
         sum_user = int(t0) + int(rating)
@@ -45,7 +50,7 @@ def netflix_avg_user (user_id, rating, d, d1) :
 
 
 # ------------
-# netflix_read
+# netflix_read_movie_files
 # ------------
 
 def netflix_read_movie_files (movie_id) :
@@ -59,14 +64,8 @@ def netflix_read_movie_files (movie_id) :
 
     return movie_file
 
-# ------------
-# netflix_read
-# ------------
 
 def netflix_read_movie_id (line) :
-    """
-
-    """
     return line[:-2]
 
 def netflix_read_user_id(line) :
@@ -79,16 +78,6 @@ def netflix_write_data_file (line) :
     with open("data.txt",'a+') as f: 
         f.write(line)
     return f
-
-# ------------
-# netflix_eval
-# ------------
-
-def netflix_eval (l) :
-    """
- 
-    """
-    
 
 # -------------
 # netflix_print
@@ -147,5 +136,5 @@ def netflix_solve (r, w) :
     t7 = tsum / (float(tcount))
     rmse = 1 / float(1.0)
     rmse = math.sqrt(t7)
-    f1.write('         ' + str(rmse))
+    f1.write('RMSE = ' + str(rmse))
     print(str(rmse))
