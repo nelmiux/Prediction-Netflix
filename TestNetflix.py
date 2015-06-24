@@ -82,10 +82,91 @@ class TestNetflix (TestCase) :
         rating = 4
         avg = netflix_avg_user(user_id,rating,dic,dic1)
         self.assertEqual(dic[user_id][0], 38)
+
+    def test_user_avg_4(self) :
+        dic = {'156078': [5,2,2.5], '2558337' :[22,6,4.3333333], '1936287' : [1,1,1],'1122423' : [34,10,3.4], '8163045' : [20,7,2.85714286]}
+        dic1 = {'156078': 2.5, '2558337' :4.3333333, '1936287' : 1 ,'1122423' : 3.4, '8163045' : 2.85714286}
+        user_id = '1122423'
+        rating = 4
+        avg = netflix_avg_user(user_id,rating,dic,dic1)
         self.assertEqual(dic[user_id][1], 11)
+
+    def test_user_avg_5(self) :
+        dic = {'156078': [5,2,2.5], '2558337' :[22,6,4.3333333], '1936287' : [1,1,1],'1122423' : [34,10,3.4], '8163045' : [20,7,2.85714286]}
+        dic1 = {'156078': 2.5, '2558337' :4.3333333, '1936287' : 1 ,'1122423' : 3.4, '8163045' : 2.85714286}
+        user_id = '1122423'
+        rating = 4
+        avg = netflix_avg_user(user_id,rating,dic,dic1)
         self.assertEqual(dic[user_id][2], (38/11))
   
 
+    #--------------------
+    # netflix_read_movie_id 
+    #-------------------
+
+
+    def test_read_movie_id_1 (self) :
+        line = "17757:\n"
+        ans  = "17757"
+        result = netflix_read_movie_id (line) 
+        self.assertEqual(result,ans)
+
+    def test_read_movie_id_2 (self) :
+        line = "12:\n"
+        ans  = "12"
+        result = netflix_read_movie_id (line) 
+        self.assertEqual(result,ans)
+
+    def test_read_movie_id_3 (self) :
+        line = "9732:\n"
+        ans  = "9732"
+        result = netflix_read_movie_id (line) 
+        self.assertEqual(result,ans)
+
+    #--------------------
+    # netflix_read_user_id 
+    #-------------------
+
+    def test_read_movie_id_1(self) :
+        line = "716091,4,2000-01-08\n"
+        ans  = "716091"
+        result = netflix_read_user_id (line) 
+        self.assertEqual(result,ans)
+
+    def test_read_movie_id_2(self) :
+        line = "1242432,3,2005-03-05\n"
+        ans  = "1242432"
+        result = netflix_read_user_id (line) 
+        self.assertEqual(result,ans)
+
+    def test_read_movie_id_3(self) :
+        line = "1646405,3,2005-07-18\n"
+        ans  = "1646405"
+        result = netflix_read_user_id (line) 
+        self.assertEqual(result,ans)
+    
+    #--------------------
+    # netflix_read_rating
+    #-------------------
+  
+
+    def test_read_movie_id_1(self) :
+        line = "716091,4,2000-01-08\n"
+        ans  = "4"
+        result = netflix_read_rating(line) 
+        self.assertEqual(result,ans)
+
+    def test_read_movie_id_2(self) :
+        line = "1242432,3,2005-03-05\n"
+        ans  = "3"
+        result = netflix_read_rating (line) 
+        self.assertEqual(result,ans)
+
+    def test_read_movie_id_3(self) :
+        line = "1646405,5,2005-07-18\n"
+        ans  = "5"
+        result = netflix_read_rating (line) 
+        self.assertEqual(result,ans)
 # ----
 # main
 # ----
