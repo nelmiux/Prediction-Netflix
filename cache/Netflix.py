@@ -40,10 +40,10 @@ def read_write (d) :
                     d[user_id][2] = uavg
                     d1[user_id] = uavg
 
-        with open("Avg_Movie_Ratings.txt","w+") as f: 
-            f.write(str(i) + ',' + str(mavg) + '\n')
+        # with open("Avg_Movie_Ratings.txt","a+") as f: 
+        #     f.write(str(i) + ',' + str(mavg) + '\n')
                     
-        with open("Avg_User_Ratings.txt","w+") as f:
+        with open("Avg_User_Ratings.txt","a+") as f:
             keys = d1.keys()
 
             for each in keys:
