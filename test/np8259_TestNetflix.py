@@ -10,11 +10,7 @@
 from io import StringIO
 from unittest import main, TestCase
 
-<<<<<<< HEAD
-from Netflix import  netflix_avg_movie, netflix_avg_user, netflix_read_movie_id, netflix_read_user_id, netflix_rating, netflix_solve
-=======
 from Netflix import  netflix_solve, netflix_read_rating,  netflix_read_movie_id, netflix_avg_movie, netflix_avg_user, netflix_read_movie_files, netflix_read_user_id  
->>>>>>> 5768cc84a21ec0eb27e0f3610d32d4c20a9a0cbc
 
 # -----------
 # TestNetflix
@@ -23,57 +19,38 @@ from Netflix import  netflix_solve, netflix_read_rating,  netflix_read_movie_id,
 class TestNetflix (TestCase) :
 
     # ------------
-    #  test_netflix_avg_movie
+    #  test_movie_avg
     # ------------
 
-    def test_netflix_avg_movie_1(self) :
-        s = "1"
-        r_avg = 3.749542961608775
+    def test_movie_avg_1(self) :
+        s = "0000001"
+        r_avg = ((28)+(31*2)+(136*3)+(207*4)+(145*5))/547;
         avg = netflix_avg_movie(s)
+        print(avg)
         self.assertEqual(avg,r_avg)
     
-    def test_netflix_avg_movie_2(self) :
-        s = "2"
-        r_avg = 3.5586206896551724
+    def test_movie_avg_2(self) :
+        s = "0000036"
+        r_avg = ((109)+(148*2)+(387*3)+(205*4)+(90*5))/939;
         avg = netflix_avg_movie(s)
         self.assertEqual(avg,r_avg)
 
-    def test_netflix_avg_movie_3(self) :
-        s = "17770"
-        r_avg = 2.816503800217155
+    def test_movie_avg_3(self) :
+        s = "0008686"
+        r_avg = ((27)+(28*2)+(70*3)+(23*4)+(6*5))/154;
         avg = netflix_avg_movie(s)
         self.assertEqual(avg,r_avg)
 
-    def test_netflix_avg_movie_4(self) :
-        s = "8274"
-        r_avg = 3.887323943661972
+    def test_movie_avg_4(self) :
+        s = "0013581"
+        r_avg = ((75)+(56*2)+(253*3)+(404*4)+(317*5))/1105;
         avg = netflix_avg_movie(s)
         self.assertEqual(avg,r_avg)
 
     #--------
-    # test_netflix_avg_user
+    # test_user_avg
     #--------
 
-<<<<<<< HEAD
-    def test_netflix_avg_user_1(self) :
-        user_id = '378466'
-        rating = 4.4515539305301646
-        user_avg = netflix_avg_user(user_id)
-        self.assertEqual(user_avg, rating)
-
-    def test_netflix_avg_user_2(self) :
-        user_id = '1197733'
-        rating = 3.5
-        user_avg = netflix_avg_user(user_id)
-        self.assertEqual(user_avg, rating)
-
-    def test_netflix_avg_user_3(self) :
-        user_id = '585188'
-        rating = 3.9285714285714284
-        user_avg = netflix_avg_user(user_id)
-        self.assertEqual(user_avg, rating)
-
-=======
     def test_user_avg_1(self) :
         dic = dict()
         initial_len = len(dic)
@@ -130,7 +107,6 @@ class TestNetflix (TestCase) :
         not_change = "156078"
         self.assertEqual(dic[not_change][2], 2.5)
   
->>>>>>> 5768cc84a21ec0eb27e0f3610d32d4c20a9a0cbc
     #--------------------
     # test_read_movie_id
     #-------------------
@@ -171,84 +147,36 @@ class TestNetflix (TestCase) :
     #-------------------
 
     def test_read_user_id_1(self) :
-<<<<<<< HEAD
-        line = "716091\n"
-=======
         line = "716091,4,2000-01-08\n"
->>>>>>> 5768cc84a21ec0eb27e0f3610d32d4c20a9a0cbc
         ans  = "716091"
         result = netflix_read_user_id (line) 
         self.assertEqual(result,ans)
 
     def test_read_user_id_2(self) :
-<<<<<<< HEAD
-        line = "1242432\n"
-=======
         line = "1242432,3,2005-03-05\n"
->>>>>>> 5768cc84a21ec0eb27e0f3610d32d4c20a9a0cbc
         ans  = "1242432"
         result = netflix_read_user_id (line) 
         self.assertEqual(result,ans)
 
     def test_read_user_id_3(self) :
-<<<<<<< HEAD
-        line = "1646405\n"
-=======
         line = "1646405,3,2005-07-18\n"
->>>>>>> 5768cc84a21ec0eb27e0f3610d32d4c20a9a0cbc
         ans  = "1646405"
         result = netflix_read_user_id (line) 
         self.assertEqual(result,ans)
     
     def test_read_user_id_4(self) :
-<<<<<<< HEAD
-        line = "2565022\n"
-=======
         line = "2565022,3,2004-11-19\n"
->>>>>>> 5768cc84a21ec0eb27e0f3610d32d4c20a9a0cbc
         ans  = "2565022"
         result = netflix_read_user_id (line) 
         self.assertEqual(result,ans)
 
     def test_read_user_id_5(self) :
-<<<<<<< HEAD
-        line = "2095153\n"
-=======
         line = "2095153,3,2004-11-07\n"
->>>>>>> 5768cc84a21ec0eb27e0f3610d32d4c20a9a0cbc
         ans  = "2095153"
         result = netflix_read_user_id (line) 
         self.assertEqual(result,ans)
 
     #--------------------
-<<<<<<< HEAD
-    # netflix_rating
-    #-------------------
-
-    def test_netflix_rating_1(self) :
-        movie_id = "4446"
-        user_id = "1657689"
-        result = netflix_rating(movie_id, user_id)
-        ans = 3
-        self.assertEqual(result,ans)
-
-    def test_netflix_rating_2(self) :
-        movie_id = "8082"
-        user_id = "2639376"
-        result = netflix_rating(movie_id, user_id)
-        ans = 5
-        self.assertEqual(result,ans)
-
-    def test_netflix_rating_3(self) :
-        movie_id = "16429"
-        user_id = "1002523"
-        result = netflix_rating(movie_id, user_id)
-        ans = 3
-        self.assertEqual(result,ans)
-
-    #--------------------
-    # netflix_solve
-=======
     # netflix_read_rating
     #-------------------
 
@@ -284,20 +212,13 @@ class TestNetflix (TestCase) :
 
     #--------------------
     # test_netflix_solve
->>>>>>> 5768cc84a21ec0eb27e0f3610d32d4c20a9a0cbc
     #-------------------
 
     def test_netflix_solve (self) :
         w = StringIO()
-<<<<<<< HEAD
-        r = StringIO("1:\n1283744\n10:\n1952305\n1531863\n1000:\n2326571\n")
-        result = netflix_solve (r, w)
-        self.assertTrue(result < 1.0)
-=======
         r = StringIO("2915:\n1293710\n1374201\n2179492\n837304\n205:\n1595943\n1502149\n1974369\n1418772\n")
         result = netflix_solve (r, w)
         self.assertEqual(result,1)
->>>>>>> 5768cc84a21ec0eb27e0f3610d32d4c20a9a0cbc
 
 # ----
 # main
