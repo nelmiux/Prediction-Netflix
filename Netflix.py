@@ -41,7 +41,13 @@ def netflix_predict(userAvg,  movieAvg, userDecAvg) :
     """
     assert ( 0 < userAvg <= 5)
     assert ( 0 < movieAvg <= 5)
+<<<<<<< HEAD
     assert ( 0 <= userDecAvg <= 5) 
+=======
+    assert ( 0 <= userDecAvg <= 5)    
+    if (userDecAvg == 0) :
+        return round(userAvg * 0.521 + movieAvg * 0.52 - 0.14, 1)
+>>>>>>> origin/master
     return round(userDecAvg * 0.7 + movieAvg * 0.3, 1) 
 
 # ------------
