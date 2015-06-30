@@ -7,14 +7,13 @@ import io
 import ctypes
 import math
 import json
-
-total_avg = 3.7
+import time
 
 # ------------
 # netflix_avg_movie
 # ------------
 
-def netflix_avg_movie (movie_id) :
+def netflix_avg_movie (movie_id, data) :
     '''
         param: movie_id
         description: The variable data has the access to the cache.
@@ -22,11 +21,6 @@ def netflix_avg_movie (movie_id) :
         return: The overall average of the movie corresponding to the movie_id
     '''
     assert movie_id != {}
-
-    url = "http://www.cs.utexas.edu/~ebanner/netflix-tests/BRG564-Average_Movie_Rating_Cache.json"
-    r = urllib.request.urlopen(url)
-    data = json.loads(r.read().decode(r.info().get_param('charset') or 'utf-8'))
-
     avg = data[movie_id]
 
     assert 1.0 <= avg <= 5.0
@@ -37,7 +31,7 @@ def netflix_avg_movie (movie_id) :
 # netflix_avg_user
 # ------------
     
-def netflix_avg_user (user_id) :
+def netflix_avg_user (user_id, data) :
     '''
         param: user_id
         description: The variable data has the access to the cache.
@@ -45,20 +39,18 @@ def netflix_avg_user (user_id) :
         return: The overall average of the user corresponding tot he user_id
     '''
     assert user_id != {}
-    url = "http://www.cs.utexas.edu/~ebanner/netflix-tests/ezo55-Average_Viewer_Rating_And_True_Variance_Cache.json"
-    r = urllib.request.urlopen(url)
-    data = json.loads(r.read().decode(r.info().get_param('charset') or 'utf-8'))
-    
+      
     avg = data[user_id][0]
 
     assert 1.0 <= avg <= 5.0
+
     return avg
 
 # ------------
 # netflix_rating
 # ------------
 
-def netflix_rating (movie_id, user_id):
+def netflix_rating (movie_id, user_id, data):
     '''
         param: movie_id, user_id
         description: The variable data has the access to the cache.
@@ -66,11 +58,7 @@ def netflix_rating (movie_id, user_id):
         return the average of the movie 
     '''
     assert user_id != {}
-
-    url = "http://www.cs.utexas.edu/~ebanner/netflix-tests/pam2599-probe_solutions.json"
-    r = urllib.request.urlopen(url)
-    data = json.loads(r.read().decode(r.info().get_param('charset') or 'utf-8'))
-
+   
     #optains tuple with the user_id and their corresponding ratings
     d = data[movie_id]
     rating = 0
@@ -80,7 +68,6 @@ def netflix_rating (movie_id, user_id):
             rating = rate
 
     assert 0 <= rating <= 5.0
-
     return rating
 
 # ------------
@@ -90,7 +77,9 @@ def netflix_rating (movie_id, user_id):
 #return the movie_id from the line obtain from the input file
 def netflix_read_movie_id (line) :
     assert line != {}
-    return line[:-2]
+    l = line.rstrip()
+    l = l.rstrip(':')
+    return l
 
 # ------------
 # netflix_read_user_id
@@ -99,7 +88,48 @@ def netflix_read_movie_id (line) :
 #return the user_id from the line obtain from the input file
 def netflix_read_user_id(line) :
     assert line != {}
-    return line[:-1]
+    return line.rstrip()
+
+
+def sqre_diff(a, p) :
+    """
+    returns ( a - p ) squared
+    """
+    return (a - p) ** 2
+
+def netflix_write (s, w) :
+    """
+    writes the object s to the writer w.
+    It appends a new line also.
+    """
+    
+    w.write(str(s) + "\n")
+
+
+def netflix_predict(userAvg,  movieAvg, userDecAvg) :
+    """
+        Currently experimenting with implementation #1
+        Trying different combinations of numerators and
+        denominators.
+    """
+    assert ( 0 < userAvg <= 5)
+    assert ( 0 < movieAvg <= 5)
+    assert ( 0 <= userDecAvg <= 5)    
+    if (userAvg == 0) :
+        return movieAvg
+    if (userDecAvg == 0) :
+        return round(userAvg * 0.521 + movieAvg * 0.52 - 0.14, 1)
+    return round(userDecAvg * 0.7 + movieAvg * 0.3, 1)  
+
+def rmse (sqrDiff, count) :
+    """
+    rmse calculates the root mean square error.
+    It is given the running sum of square differences
+    and the count to divide by. The square root is then 
+    returned.
+    """
+    assert count > 0 
+    return round(math.sqrt(sqrDiff / count), 2)
 
 # -------------
 # netflix_solve
@@ -110,56 +140,52 @@ def netflix_solve (r, w) :
     r a reader
     w a writer
     """
-    movie_id = -1
-    tavg = 0 
-    tsum = 0
-    count = 0
-    dt = dict()
+    start_time = time.time()
+    sqrDiff=0
+    c=0
+    movie_id = ""
+    movieDecade = 0
+    userDecAvg = 0
+
+    solutionsCache = open("pam2599-probe_solutions.json", "r")
+    solutionsDict = json.loads(solutionsCache.read())
+    userAvg  = open("ezo55-Average_Viewer_Rating_Cache.json")
+    userAvgDict   = json.loads(userAvg.read())
+    movieAvg = open("BRG564-Average_Movie_Rating_Cache.json", "r")
+    movieAvgDict = json.loads(movieAvg.read())
+    userDec = open("drc2582-customer_decade_dict.json", "r")
+    userDecDict = json.loads(userDec.read())
+    movieDec = open("pra359-Movie_Decades_Cache.json", "r")
+    movieDecDict = json.loads(movieDec.read())
 
     #loop through the file and obtain the total average
-    for l in r :
-        if (l[len(l)-2] != ':') :
+    lines = r.readlines()
+    for l in lines :
+        if ':' not in l :
             user_id = netflix_read_user_id(l)
-            uavg = netflix_avg_user (user_id)
-            dt.update({user_id:uavg})
-            tavg = tavg + uavg
-            count = count + 1
-
-    tavg = tavg/count
-    assert 1.0 <= tavg <= 5.0
-
-    #move the counter to the start of the file
-    r.seek(0)
-
-    for s in r :
-        if (s[len(s)-2] == ':') :
+            try :
+                userDecAvg = userDecDict[user_id][str(movieDecade)]['total'] / userDecDict[user_id][str(movieDecade)]['count']
+            except KeyError :
+                userDecAvg = 0
+            prediction = netflix_predict(userAvgDict[user_id],movieAvgDict[movie_id], userDecAvg)
+            actual_rating = netflix_rating(movie_id, user_id, solutionsDict)
+            sqrDiff += sqre_diff(actual_rating,prediction)
+            c += 1
+            netflix_write(prediction, w)
+        else :
            #obtains the movie ID from the file 
            #and calls the corresponding cache to get 
            #the movie's average
-            movie_id = netflix_read_movie_id(s)
-            w.write(str(movie_id) + ':\n')
-            mavg = netflix_avg_movie (movie_id)
-        else :
-            #obtains the user ID from the file. 
-            #Calls the corresponding cache to get 
-            #the user's average
-            user_id = netflix_read_user_id(s)
-            uavg = dt[user_id]
-            actual_rating = netflix_rating(movie_id, user_id)
-            #our prediction for the user's rating
-            prediction = (uavg * 0.521) + (mavg * 0.52) - 0.14
-            temp = prediction
-            temp = round(temp,1)
-            w.write(str(temp) + '\n')
+            movie_id = netflix_read_movie_id(l)
+            movieDecade = movieDecDict[movie_id]
+            netflix_write(str(movie_id) + ':', w)
+            
+    solutionsCache.close()
+    userAvg.close()
+    movieAvg.close()
+    userDec.close()
+    movieDec.close()
 
-            #means square error calculation
-            value = float(actual_rating - prediction)
-            tsum += math.pow(value, 2)
-   
-    #rmse calculation 
-    t7 = tsum / (float(count))
-    rmse = math.sqrt(t7)
-    rmse = round(rmse, 2)
-    assert rmse > 0
-    w.write('RMSE = ' + str(rmse) + '\n')
+    netflix_write("RMSE: " + str(rmse(sqrDiff,c)), w)
+    print("--- %s seconds ---" % (time.time() - start_time))
     return rmse
