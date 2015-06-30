@@ -8,10 +8,6 @@ import ctypes
 import math
 import json
 import time
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 
 # ------------
 # netflix_sqre_diff
@@ -37,11 +33,7 @@ def netflix_write (s, w) :
 
 def netflix_predict(userAvg,  movieAvg, userDecAvg) :
     """
-<<<<<<< HEAD
     predict the user rating using a linear progression
-=======
-        
->>>>>>> origin/master
     """
     assert ( 0 < userAvg <= 5)
     assert ( 0 < movieAvg <= 5)
@@ -120,9 +112,5 @@ def netflix_solve (r, w) :
     movieDec.close()
     rmse = netflix_rmse(sqrDiff,c)
     netflix_write("RMSE: " + str(rmse), w)
-<<<<<<< HEAD
     # print("--- %s seconds ---" % (time.time() - start_time))
-=======
-    print("--- %s seconds ---" % (time.time() - start_time))
->>>>>>> origin/master
     return rmse
