@@ -84,6 +84,8 @@ class TestNetflix (TestCase) :
         result = netflix_predict(userAvg,  movieAvg, userDecAvg) 
         self.assertEqual(result,ans)
 
+<<<<<<< HEAD
+=======
     def test_netflix_predict_5 (self) :
         userAvg = 1.83827405
         movieAvg = 2.9217495472
@@ -91,6 +93,7 @@ class TestNetflix (TestCase) :
         ans = 0.9
         result = netflix_predict(userAvg,  movieAvg, userDecAvg) 
         self.assertEqual(result,ans)
+>>>>>>> origin/master
     #--------------------
     # test_netflix_rmse 
     #-------------------
@@ -157,7 +160,6 @@ class TestNetflix (TestCase) :
         result = netflix_solve (r, w)
         self.assertEqual(result,ans)
 
-    
 # ----
 # main
 # ----

@@ -41,7 +41,13 @@ def netflix_predict(userAvg,  movieAvg, userDecAvg) :
     """
     assert ( 0 < userAvg <= 5)
     assert ( 0 < movieAvg <= 5)
+<<<<<<< HEAD
+    assert ( 0 <= userDecAvg <= 5)    
+    if (userDecAvg == 0) :
+        return round(userAvg * 0.521 + movieAvg * 0.52 - 0.14, 1)
+=======
     assert ( 0 <= userDecAvg <= 5) 
+>>>>>>> origin/master
     return round(userDecAvg * 0.7 + movieAvg * 0.3, 1) 
 
 # ------------
@@ -87,7 +93,10 @@ def netflix_solve (r, w) :
     while (l) :
         if ':' not in l :
             user_id = l
-            userDecAvg = userDecDict[user_id][str(movieDecade)]['total'] / userDecDict[user_id][str(movieDecade)]['count']
+            try :
+                userDecAvg = userDecDict[user_id][str(movieDecade)]['total'] / userDecDict[user_id][str(movieDecade)]['count']
+            except KeyError:
+                userDecAvg = 0
             prediction = netflix_predict(userAvgDict[user_id],movieAvgDict[movie_id], userDecAvg)
             actual_rating = solutionsDict[movie_id][user_id]
             sqrDiff += netflix_sqre_diff(actual_rating,prediction)

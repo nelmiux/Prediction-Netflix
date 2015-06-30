@@ -1,0 +1,189 @@
+commit b8b02b91267c41d9af27b11a9a0e927cb07e63c1
+Merge: 335b0e6 a0d2dce
+Author: nelmiux <npererar@utexas.edu>
+Date:   Tue Jun 30 12:14:20 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+    
+    Conflicts:
+    	Netflix.py
+
+commit 335b0e68544299b0f087a34975e741dcd29cf8ba
+Author: nelmiux <npererar@utexas.edu>
+Date:   Tue Jun 30 12:13:36 2015 -0500
+
+    Final Version
+
+commit a0d2dce6c3b85685f54b441fa929c32205fb423a
+Author: daniela-reyes <danielareyes174@utexas.edu>
+Date:   Tue Jun 30 12:09:32 2015 -0500
+
+    Got rid of unuse if
+
+commit a4de07c73c2a5f6e1e44f8ae1cdc65de6d6a2373
+Author: daniela-reyes <danielareyes174@utexas.edu>
+Date:   Tue Jun 30 11:59:01 2015 -0500
+
+    UnitTest for resubmission
+
+commit 4f6b15165b4738f80c3b6075530cfc73652f3aaf
+Author: nelmiux <npererar@utexas.edu>
+Date:   Tue Jun 30 11:52:43 2015 -0500
+
+    Final Version
+
+commit cd75a564be936426e81986a26aecbe090c6ff285
+Author: nelmiux <npererar@utexas.edu>
+Date:   Tue Jun 30 11:15:33 2015 -0500
+
+    Final Version
+
+commit 9ba8edd17c83569f27a94c3023c7bccd01e3728f
+Author: nelmiux <npererar@utexas.edu>
+Date:   Tue Jun 30 11:01:36 2015 -0500
+
+    Final Version
+
+commit 432bfddb8f05c26ab25d8a774ca8f11851d15b8d
+Author: Nelma Perera <npererar@utexas.edu>
+Date:   Tue Jun 30 10:41:21 2015 -0500
+
+    Update README.md
+
+commit 4ac5e17ca4adfd499b453aa06690fcc72cbc2c63
+Author: nelmiux <npererar@utexas.edu>
+Date:   Tue Jun 30 10:27:14 2015 -0500
+
+    Functions Fixed
+
+commit 1f71083dbe55f448aa55035f7994bdc7c045b96b
+Author: nelmiux <npererar@utexas.edu>
+Date:   Tue Jun 30 09:54:07 2015 -0500
+
+    Fixing Timing
+
+commit f13258faeb4127f2759226062ed019756ada27e3
+Author: Nelma Perera Rodriguez <npererar@cs.utexas.edu>
+Date:   Wed Jun 24 05:20:04 2015 -0500
+
+    Created log
+
+commit 5a23ece92ccba48d3ec6c4d8a9c9fd4d380607fa
+Author: Nelma Perera Rodriguez <npererar@cs.utexas.edu>
+Date:   Wed Jun 24 05:17:47 2015 -0500
+
+    Created html
+
+commit ca615fa9409f770b4d0142f8f4c29ebe4e3541ab
+Author: Nelma Perera Rodriguez <npererar@cs.utexas.edu>
+Date:   Wed Jun 24 05:12:41 2015 -0500
+
+    Final Version
+
+commit 643a1698871581936360cc77cc2194a6987247e4
+Merge: 6e265e1 5768cc8
+Author: Nelma Perera Rodriguez <npererar@cs.utexas.edu>
+Date:   Wed Jun 24 04:51:47 2015 -0500
+
+    Final Version
+
+commit 6e265e10b1681ce45753a2721f7da6cad70e4d60
+Author: Nelma Perera Rodriguez <npererar@cs.utexas.edu>
+Date:   Wed Jun 24 04:48:15 2015 -0500
+
+    Final Version
+
+commit 5768cc84a21ec0eb27e0f3610d32d4c20a9a0cbc
+Author: daniela-reyes <danielareyes174@utexas.edu>
+Date:   Wed Jun 24 04:41:56 2015 -0500
+
+    Delete README.txt
+
+commit 602e2279877c480fee3da1f276f361323cdec155
+Author: daniela-reyes <danielareyes174@utexas.edu>
+Date:   Wed Jun 24 04:41:37 2015 -0500
+
+    Update README.md
+
+commit eb41c86795de87e52489e62469b007bb12dec55a
+Author: daniela-reyes <danielareyes174@utexas.edu>
+Date:   Tue Jun 23 23:40:19 2015 -0500
+
+    test added
+
+commit 1ec2f87945189b10437bde6277e4d9e39f931447
+Author: daniela-reyes <danielareyes174@utexas.edu>
+Date:   Tue Jun 23 19:25:19 2015 -0500
+
+    made more unit test
+
+commit 0785ebaeb3346a746513cf3f709246369b217821
+Author: daniela-reyes <danielareyes174@utexas.edu>
+Date:   Tue Jun 23 19:02:00 2015 -0500
+
+    fix unit test and movie average func
+
+commit 061b5f19b853c12fb41949eb09432e0f66cf52f7
+Author: daniela-reyes <danielareyes174@utexas.edu>
+Date:   Tue Jun 23 17:40:49 2015 -0500
+
+    created new unit test
+
+commit 1dba5825ca0b6d6736baa326bb6c05b2fec62e82
+Author: Nelma Perera Rodriguez <npererar@cs.utexas.edu>
+Date:   Tue Jun 23 02:53:18 2015 -0500
+
+    Simple Solution Done
+
+commit 26b5c96427dd523a605c132d3054571aae5013ad
+Merge: 7c168e5 0d2b493
+Author: Nelma Perera <npererar@utexas.edu>
+Date:   Mon Jun 22 18:59:40 2015 -0500
+
+    Merge pull request #12 from nelmiux/dev-branch
+    
+    Dev branch
+
+commit 0d2b493fd8bbb6aef74b71062c8dbce14e550db2
+Author: nelmiux <npererar@utexas.edu>
+Date:   Mon Jun 22 18:41:45 2015 -0500
+
+    Initial Simple Solution
+
+commit b5ece8ac9972c9d6fea6b95e4eeb2b67a9723b6a
+Author: Nelma Perera <npererar@utexas.edu>
+Date:   Sat Jun 20 20:17:50 2015 -0500
+
+    Update README.md
+
+commit 1ba74aacea07becbed695ac17e54005708277ae6
+Author: Nelma Perera <npererar@utexas.edu>
+Date:   Sat Jun 20 20:17:12 2015 -0500
+
+    Create README.md
+
+commit 862b996eaf9337f27fc1b3b307b03ef8454bc9ad
+Author: nelmiux <npererar@utexas.edu>
+Date:   Sat Jun 20 18:47:02 2015 -0500
+
+    Initial Commit
+
+commit c15eccb989b4ea31b4ca2fe9d9869454ffbff0e8
+Author: nelmiux <npererar@utexas.edu>
+Date:   Sat Jun 20 18:33:36 2015 -0500
+
+    Fixed
+
+commit c6a4c0d71791c8a99ffadc3efe6096e17e634f61
+Author: nelmiux <npererar@utexas.edu>
+Date:   Sat Jun 20 18:28:28 2015 -0500
+
+    Initial Commit
+    
+    Putting the skeleton files on the repository
+
+commit 7c168e568f065c06056031668766748eb27e9807
+Author: nelmiux <npererar@utexas.edu>
+Date:   Sat Jun 20 17:14:52 2015 -0500
+
+    First Commit
