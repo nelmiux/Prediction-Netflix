@@ -19,10 +19,14 @@ def netflix_sqre_diff(a, p) :
     """
     return (a - p) ** 2
 
+# ------------
+# netflix_write
+# ------------
+
 def netflix_write (s, w) :
     """
     writes the object s to the writer w.
-    It appends a new line also.
+    It appends a new line too.
     """
     
     w.write(str(s) + "\n")
@@ -112,5 +116,5 @@ def netflix_solve (r, w) :
     movieDec.close()
     rmse = netflix_rmse(sqrDiff,c)
     netflix_write("RMSE: " + str(rmse), w)
-    # print("--- %s seconds ---" % (time.time() - start_time))
+    #print("--- %s seconds ---" % (time.time() - start_time))
     return rmse
