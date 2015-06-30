@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+Traceback (most recent call last):
+  File "TestNetflix.py", line 13, in <module>
+    from Netflix import  netflix_read_movie_id, netflix_read_user_id, netflix_solve
+ImportError: cannot import name 'netflix_read_movie_id'
+=======
 .....E.....
 ======================================================================
 ERROR: test_netflix_solve (__main__.TestNetflix)
@@ -12,3 +18,4 @@ Ran 11 tests in 12.328s
 
 FAILED (errors=1)
 --- 10.268894910812378 seconds ---
+>>>>>>> origin/master
