@@ -1,21 +1,11 @@
-<<<<<<< HEAD
-Traceback (most recent call last):
-  File "TestNetflix.py", line 13, in <module>
-    from Netflix import  netflix_read_movie_id, netflix_read_user_id, netflix_solve
-ImportError: cannot import name 'netflix_read_movie_id'
-=======
-.....E.....
-======================================================================
-ERROR: test_netflix_solve (__main__.TestNetflix)
+................
 ----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "TestNetflix.py", line 97, in test_netflix_solve
-    self.assertTrue(result < 1.0)
-TypeError: unorderable types: function() < float()
+Ran 16 tests in 60.219s
 
-----------------------------------------------------------------------
-Ran 11 tests in 12.328s
-
-FAILED (errors=1)
---- 10.268894910812378 seconds ---
->>>>>>> origin/master
+OK
+Name          Stmts   Miss Branch BrMiss  Cover   Missing
+---------------------------------------------------------
+Netflix          59      0      4      0   100%   
+TestNetflix     104      0      2      1    99%   
+---------------------------------------------------------
+TOTAL           163      0      6      1    99%   
