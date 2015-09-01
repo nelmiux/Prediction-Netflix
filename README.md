@@ -1,13 +1,32 @@
-# cs373-netflix
+# CS373-netflix
 
-Project #3: Netflix
+## Status
+![Build Status](https://magnum.travis-ci.com/nelmiux/cs373-netflix.svg?token=d7DyZsL5MGsgRrcqFYN1&branch=master)
 
-Due: Tue, 23 Jun 2015, 10pm
+Netflix	index
+/media/sf_Work/GitHub/private/cs373-netflix/Netflix.py
 
-Course Name: CS 373 -- Software Engineering
+ 
+## Modules
+      	  	
+ctypes  io  json  math  os  re  time  urllib
 
-E-mail: npererar@utexas.edu
+ 
+## Functions
+      	  	
+netflix_predict(userAvg, movieAvg, userDecAvg)
+    predict the user rating using a linear progression
 
-E-mail: danielareyes174@utexas.edu
+netflix_rmse(sqrDiff, count)
+    rmse calculates the root mean square error.
 
-Write a program to win the Netflix Prize in Python.
+netflix_solve(r, w)
+    r a reader
+    w a writer
+
+netflix_sqre_diff(a, p)
+    returns ( a - p ) squared
+
+netflix_write(s, w)
+    writes the object s to the writer w.
+    It appends a new line too.
