@@ -2,10 +2,6 @@
 
 ## Status
 ![Build Status](https://magnum.travis-ci.com/nelmiux/cs373-netflix.svg?token=d7DyZsL5MGsgRrcqFYN1&branch=master)
-
-Netflix	index
-/media/sf_Work/GitHub/private/cs373-netflix/Netflix.py
-
  
 ## Modules
       	  	
