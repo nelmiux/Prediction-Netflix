@@ -30,7 +30,6 @@ script:
     - date
     - ls -al
     - touch Netflix.log
-    - make netflix-tests
     - ls -al
     - make Netflix.html
     - ls -al
