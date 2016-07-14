@@ -1,7 +1,7 @@
 # Netflix Movies Preference per User to make sugestions
 
 ## Status
-![Build Status](https://magnum.travis-ci.com/nelmiux/cs373-netflix.svg?token=d7DyZsL5MGsgRrcqFYN1&branch=master)
+![Build Status](https://travis-ci.org/nelmiux/Prediction-Netflix.svg?branch=master)
  
 ## Modules
       	  	
