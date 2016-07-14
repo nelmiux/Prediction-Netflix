@@ -1,13 +1,19 @@
-# Netflix Movies Preference per User to make sugestions
+# Netflix Movies Sugestions per User
 
 ## Status
 ![Build Status](https://travis-ci.org/nelmiux/Prediction-Netflix.svg?branch=master)
  
 ## Modules
       	  	
-ctypes  io  json  math  os  re  time  urllib
+ctypes  
+io  
+json  
+math  
+os  
+re  
+time  
+urllib
 
- 
 ## Functions
       	  	
 netflix_predict(userAvg, movieAvg, userDecAvg)
